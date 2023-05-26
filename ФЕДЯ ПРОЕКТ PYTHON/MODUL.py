@@ -42,16 +42,21 @@ def sleep(cat, smert):
         son = "Вам всю ночь снились кошмары. ваш усталость поднялась до "
     if son == 10 and cat == False:
         smert = True
-        son = "Зомби услышали ваш храп."    
+        son = "Зомби услышали ваш храп."
+        
+    return fatigue, smert    
 
-#игровые условия
+#игровые условия для кнопки "далее"
 def game(label, day, hunger, thirst, fatigue, hp, animal):
+    if label.text() == "Вы едите по холодной и мокрой улице. Вы не знаете сто скоро вас ждёт, что-то опасное.":
+        label.setText("Киньте кубик")
     if label.text() == "Киньте кубик":
         kubik()
         label.setText("Вам выпало", kub, ", готовы риснуить?")
     if label.text() == "Вы сидите тихо притаив дыхание. Вам страшно. Через несколько часов сидения в раздумиях вы встаёте и осматриваетесь.":
-        have_animal()
-        label.setText("День:", day,"\nГолод:", hunger,"\nЖажда:", thirst,"\nУсталость:", fatigue,"\nЖизнь:", hp,"\nЖивотное:", animal)
+        label.setText("День:", day,"\nГолод:", hunger,"\nЖажда:", thirst,"\nУсталость:", fatigue,"\nЖизнь:", hp,"\nЖивотное:", animal)   
     if label.text() == "Вы обошли дома которые хотели.":
         sleep()
         label.setText(son)
+        
+    return label 
